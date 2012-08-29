@@ -1,0 +1,21 @@
+This is your new Play 2.0 application
+=====================================
+
+This file will be packaged with your application, when using `play dist`.
+
+Stack:
+
+
+
+ui components:			Jquery Mobile
+databinding:			Knockout
+PubSub:					AmplifyJS/...
+Dependency:				requirejs
+Templating:				...
+Dom handling:			Jquery
+Json/Ajax:				Jquery
+Language:				Javascript
+
+APIs:					Json/Rest
+Web/http:				Play
+Language:				Scala

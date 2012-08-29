@@ -1,0 +1,25 @@
+<div id="medewerkerView" data-ng-controller="MedewerkerDetailCtrl">
+    <div>
+        <h1>{{medewerker.voornaam}}</h1>
+    </div>
+    <div>
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td ng-click="queryMedewerker({{medewerker.id.id}})">{{medewerker.id.id}}</td>
+            </tr>
+            <tr>
+                <th>Voornaam</th>
+                <td>{{medewerker.voornaam}}</td>
+            </tr>
+            <tr>
+                <th>Achternaam</th>
+                <td>{{medewerker.achternaam}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <button ng-click="queryMedewerker(medewerker.id.id)">Refresh</button>
+		<button ng-click="next()">Next</button>
+    </div>
+</div>

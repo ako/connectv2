@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <script type='text/javascript' src='/assets/javascripts/jquery-1.7.1.min.js'></script>
+        <script type='text/javascript' src='/assets/javascripts/jquery.mobile-1.1.1.js'></script>
+        <script type='text/javascript' src='/assets/javascripts/knockout-2.1.0.js'></script>
+        <script type='text/javascript' src='/assets/javascripts/underscore-min.js'></script>
+        <script type='text/javascript' src='/assets/javascripts/connect.js'></script>
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                console.log('document ready!');
+                connectApp.initApp();
+            });
+        </script>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+    </head>
+    <body>
+        <div id="tocView" data-role="page" data-title="Connect">
+            <div data-role="header">
+                <h1>Connect</h1>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-inset="true" data-filter="true">
+                    <li><a href="#medewerkerListView">Medewerkers</a></li>
+                    <li><a href="#klantenListView">Klanten</a></li>
+                    <li><a href="#">Allocaties</a></li>
+                    <li><a href="#">Timesheets</a></li>
+                </ul>                
+            </div>
+        </div>
+        <div id="medewerkerListView" data-role="page" data-title="Medewerkers">
+            <div data-role="header">
+				<a href="#tocView">Home</a>
+                <h1>Medewerkers</h1>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-inset="true" data-filter="true" data-bind="foreach: medewerkers">
+                    <li><a href="#medewerkerView" data-bind="text: medewerkerAchternaam"></a></li>
+                </ul>                
+            </div>
+        </div>
+        <div id="klantenListView" data-role="page" data-title="Klanten">
+            <div data-role="header">
+				<a href="#tocView">Home</a>
+                <h1>Klanten</h1>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-inset="true" data-filter="true">
+                    <li><a href="#">Van Dijk Educatie</a></li>
+                    <li><a href="#">Gemeente Rotterdam</a></li>
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">...</a></li>
+                </ul>                
+            </div>
+        </div>
+        <div id="medewerkerView" data-role="page" data-title="Medewerker">
+            <div data-role="header">
+				<a href="#tocView">Home</a>
+                <h1><span data-bind="text: medewerkerVoornaam"></span></h1>
+            </div>
+            <div data-role="content">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>Id</th><td><span data-bind="text: medewerkerId"></span></td>
+                    </tr><tr>
+                        <th>Voornaam</th><td><span data-bind="text: medewerkerVoornaam"></span></td>
+                    </tr><tr>
+                        <th>Achternaam</th><td><span data-bind="text: medewerkerAchternaam"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a href="#" data-bind="click: queryMedewerker" data-role="button" data-inline="true" data-theme="b">Refresh</a>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html data-ng-app="connectApp" >
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type='text/javascript' src='/assets/javascripts/jquery-1.7.1.min.js'></script>
+    <script type='text/javascript' src='/assets/javascripts/bootstrap.js'></script>
+    <script type='text/javascript' src='/assets/javascripts/angular-1.0.1.js'></script>
+    <script type='text/javascript' src='/assets/javascripts/angular-resource-1.0.1.js'></script>
+    <script type='text/javascript' src='/assets/javascripts/angular-sanitize-1.0.1.js'></script>
+    <script type='text/javascript' src='/assets/javascripts/connect-app2.js'></script>
+    <link href="/assets/stylesheets/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="navbar  navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+
+            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <!-- Be sure to leave the brand out there if you want it shown -->
+            <a class="brand" href="#">Connect</a>
+
+            <!-- Everything you want hidden at 940px or less, place within here -->
+            <div class="nav-collapse">
+                <!-- .nav, .navbar-search, .navbar-form, etc -->
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Home<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#/medewerkers">Medewerkers</a></li>
+                        <li><a href="#/klanten">Klanten</a></li>
+                        <li><a href="#/projecten">Projecten</a></li>
+                        <li><a href="#">Allocaties</a></li>
+                        <li><a href="#">Timesheets</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <ul class="nav nav-list">
+                <li><a href="#/medewerkers">Medewerkers</a></li>
+                <li><a href="#/klanten">Klanten</a></li>
+                <li><a href="#/projecten">Projecten</a></li>
+                <li><a href="#">Allocaties</a></li>
+                <li><a href="#">Timesheets</a></li>
+            </ul>
+        </div>
+        <div class="span10" data-ng-view>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
