@@ -1,0 +1,30 @@
+Timesheet {{timesheet[0].maand}}/{{timesheet[0].jaar}}
+
+<table class="table timesheet">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th width="100%">Allocatie</th>
+        <th width="100%">Omschrijving</th>
+        <th data-ng-repeat="dag in timesheet[0].uren">{{$index + 1}}</th>
+    </tr>
+    </thead>
+    <tfoot>
+        <th></th>
+        <th>Totalen</th>
+        <th></th>
+        <th data-ng-repeat="dagsum in sum">{{dagsum.uren}}</th>
+    </tfoot>
+    <tbody>
+    <tr data-ng-repeat="allocatie in timesheet">
+        <td>{{allocatie.id}}</td>
+        <td>{{allocatie.allocatie}}</td>
+        <td>{{allocatie.omschrijving}}</td>
+        <td data-ng-repeat="uren in allocatie.uren"><input id="cell-{{allocatie.id}}-{{$index}}"
+                                                           ng-model="uren.uren" type="text" pattern="[0-9]{1,2}"
+                                                           do-key-binding="{{allocatie.id}},{{$index}}"
+                                                           ng-change="somUrenDag($index)"/></td>
+    </tr>
+</table>
+<button ng-click="print()">Print</button>
+</table>

@@ -16,8 +16,53 @@ connectApp.
             when('/klanten', {templateUrl: 'partials/klanten.html', controller: KlantenListCtrl}).
             when('/projecten', {templateUrl: 'partials/projecten.html', controller: ProjectenListCtrl}).
 */
+            when('/timesheet',{templateUrl:'partials/timesheet.html',controller: TimesheetCtrl}).
             otherwise({redirectTo: '/medewerkers'});
 }]);
+
+/*******************************************************************************
+ *
+ * Directives
+ *
+ ******************************************************************************/
+connectApp.directive('doKeyBinding', function factory() {
+    return function postLink(scope, iElement, iAttrs) {
+        console.log(iElement);
+        console.log(iAttrs);
+        $(iElement).bind('keyup','$',
+            function(evt){
+                console.log(evt.keyCode);
+                // 37  - left
+                // 38  - up
+                // 39  - right
+                // 40  - down
+                var s = "" + iAttrs.doKeyBinding;
+                var row = parseInt(s.split(",")[0]);
+                var cell = parseInt(s.split(",")[1]);
+                console.log("row = " + row);
+                console.log("cell = " + cell);
+                if (evt.keyCode == 37 ){
+                    console.log('down');
+                    cell -= 1;
+                }
+                if (evt.keyCode == 38 ){
+                    console.log('down');
+                    row -= 1;
+                }
+                if (evt.keyCode == 39 ){
+                    console.log('down');
+                    cell += 1;
+                }
+                if (evt.keyCode == 40 ){
+                    console.log('down');
+                    row += 1;
+                }
+                console.log("#cell-" + row + "-" + cell);
+                $("#cell-" + row + "-" + cell).focus().select();
+            }
+        );
+    }
+});
 
 /*******************************************************************************
  *
@@ -65,6 +110,55 @@ function MedewerkerDetailCtrl($scope, $routeParams,Medewerker){
 	};
 }
 MedewerkerDetailCtrl.$inject = ['$scope','$routeParams','Medewerker'];
+
+function TimesheetCtrl($scope,$routeParams){
+    console.log("TimesheetCtrl");
+    $scope.timesheet = [
+        {id:0,allocatie:'aloc1',omschrijving:'ontwerp',jaar:2012,maand:8,
+            uren:[{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+                {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+                {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+                {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+                {uren:0},{uren:0},{uren:0}
+            ]},
+        {id:1,allocatie:'aloc1',omschrijving:'test',jaar:2012,maand:8,
+            uren:[{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+                {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+                {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+                {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+                {uren:0},{uren:0},{uren:0}
+            ]},
+        {id:2,allocatie:'aloc2',omschrijving:'implementatie',jaar:2012,maand:8,
+            uren:[{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+                {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+                {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+                {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+                {uren:0},{uren:0},{uren:0}
+            ]}
+    ];
+    $scope.sum = [ {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+            {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+            {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+            {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
+            {uren:0},{uren:0},{uren:0}
+        ];
+
+    $scope.print = function(){
+        console.log($scope.timesheet);
+    };
+    $scope.somUrenDag = function(dag){
+        console.log("somUrenDag: " + dag);
+        var som = 0;
+        _.each($scope.timesheet,function(aloc){
+            console.log("aloc = " + aloc.id + ", " + aloc.uren[dag].uren);
+            som = som + parseInt(aloc.uren[dag].uren);
+        });
+        console.log("som[" + dag + "] = " + som);
+        $scope.sum[dag].uren = som;
+    }
+
+}
+TimesheetCtrl.$inject = ['$scope','$routeParams'];
 
 /*
 console.log('init-5');
