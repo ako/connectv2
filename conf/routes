@@ -11,9 +11,9 @@ GET     /medewerkers/:id            controllers.Medewerkers.get(id:Long)
 
 #GET     /login                      controllers.Application.login
 #GET     /authenticate               controllers.Application.authenticate
-GET     /login/auth                 controllers.Application.login
-GET     /login/verify               controllers.Application.loginPost
-GET     /login/callback               controllers.Application.openIDCallback
+GET     /login/auth                  controllers.Application.login
+#GET     /login/verify               controllers.Application.loginPost
+GET     /login/callback              controllers.Application.callback
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

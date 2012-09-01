@@ -1,10 +1,8 @@
-#{if flash.error}
-<h1>${flash.error}</h1>
-#{/if}
+@(clientId: String,redirectUri: String,scope: String,state: String)
 
-<form action="@{controllers.Application.loginPost()}" method="POST">
-    <label for="user">What's your OpenID?</label>
-    <input type="text" name="user" id="user" />
-    <input type="submit" value="login..." />
-</form>
-</code>
+<a href="https://accounts.google.com/o/oauth2/auth?
+scope=@scope&
+state=@state&
+redirect_uri=@redirectUri&
+response_type=token&
+client_id=@clientId">login google oauth2</a>

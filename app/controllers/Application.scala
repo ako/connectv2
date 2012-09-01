@@ -22,37 +22,24 @@ object Application extends Controller {
   }
 
   def login = Action {
-    Ok(views.html.login())
+    // prod
+//    val redirectUri = "http://connectv2.herokuapp.com/login/callback"
+//    val jsOrigin = "http://connectv2.herokuapp.com"
+
+    // dev
+    val clientId = "672117013692-pnps2esp4nh7ejcjbb79mta6cdtb7sel.apps.googleusercontent.com"
+    val email = "672117013692-pnps2esp4nh7ejcjbb79mta6cdtb7sel@developer.gserviceaccount.com"
+    val secret = "0TCVA2LxmErvylnRrcNkR7qH"
+    val redirectUri = "http://localhost:9000/login/callback"
+    val jsOrigin = "http://localhost:9000/"
+
+    val scope = "https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile"
+    val state = "/profile"
+    Ok(views.html.login(clientId,redirectUri,scope,state))
   }
 
-  def loginPost = Action { implicit request =>
-    Form(single(
-      "openid" -> nonEmptyText
-    )).bindFromRequest.fold(
-      error => {
-        Logger.info("bad request " + error.toString)
-        BadRequest(error.toString)
-      },
-      {
-        case (openid) => AsyncResult(OpenID.redirectURL(openid, routes.Application.openIDCallback.absoluteURL())
-            .extend( _.value match {
-                case Redeemed(url) => Redirect(url)
-                case Thrown(t) => Redirect(routes.Application.login)
-            }))
-      }
-    )
-  }
-
-  def openIDCallback = Action { implicit request =>
-    AsyncResult(
-      OpenID.verifiedId.extend( _.value match {
-        case Redeemed(info) => Ok(info.id + "\n" + info.attributes)
-        case Thrown(t) => {
-          // Here you should look at the error, and give feedback to the user
-          Redirect(routes.Application.login)
-        }
-      })
-    )
+  def callback = Action {
+    Ok(views.html.auth())
   }
 
 }
