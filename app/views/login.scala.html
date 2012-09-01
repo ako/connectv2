@@ -1,8 +1,15 @@
 @(clientId: String,redirectUri: String,scope: String,state: String)
 
+
+
+@main("Welcome to Play 2.0") {
+
 <a href="https://accounts.google.com/o/oauth2/auth?
 scope=@scope&
 state=@state&
 redirect_uri=@redirectUri&
-response_type=token&
+response_type=code&
+access_type=online&
 client_id=@clientId">login google oauth2</a>
+
+}
