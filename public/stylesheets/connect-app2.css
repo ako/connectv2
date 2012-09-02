@@ -1,2 +1,5 @@
 table.timesheet td, table.timesheet th {padding: 4px 3px 4px 3px;}
 table.timesheet td input[type=text] {width: 1.2em; border: 0px solid black;padding: 2px;margin:0;border-radius:0;}
+table.timesheet th.notEnough { color: #faa;}
+table.timesheet th.extraHours { color: #afa;}
+table.timesheet th.enough { color: #aaf; }

@@ -13,7 +13,7 @@ Timesheet {{timesheet[0].maand}}/{{timesheet[0].jaar}}
         <th></th>
         <th>Totalen</th>
         <th></th>
-        <th data-ng-repeat="dagsum in sum">{{dagsum.uren}}</th>
+        <th data-ng-repeat="dagsum in sum" class="{{dagsum.uren | hourCheck}}">{{dagsum.uren}}</th>
     </tfoot>
     <tbody>
     <tr data-ng-repeat="allocatie in timesheet">

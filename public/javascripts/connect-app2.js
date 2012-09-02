@@ -25,6 +25,17 @@ connectApp.
  * Directives
  *
  ******************************************************************************/
+connectApp.filter('hourCheck', function hourCheck(){
+    return function(input){
+        var hourCheck = "enough";
+        if (parseInt(input) < 8){
+            hourCheck = "notEnough";
+        } else if (parseInt(input) > 8) {
+            hourCheck = "extraHours";
+        }
+        return hourCheck;
+    }
+});
 connectApp.directive('doKeyBinding', function factory() {
     return function postLink(scope, iElement, iAttrs) {
         console.log(iElement);
