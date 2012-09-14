@@ -10,6 +10,7 @@ import play.api.data._
 import play.api.data.Forms._
 import play.api.libs.concurrent._
 import play.api.libs.ws.WS
+import play.api.Play.current
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,8 +21,8 @@ import play.api.libs.ws.WS
  */
 object Authentication extends Controller {
 
-  val clientId = ""
-  val secret = ""
+  val clientId:String = Play.current.configuration.getString("google.oauth2.client.id").get
+  val secret:String = Play.current.configuration.getString("google.oauth2.secret").get
   var redirectUri = "http://connectv2.herokuapp.com/login/callback"
   var jsOrigin = "http://connectv2.herokuapp.com"
 
