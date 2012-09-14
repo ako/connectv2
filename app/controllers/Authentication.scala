@@ -20,9 +20,8 @@ import play.api.libs.ws.WS
  */
 object Authentication extends Controller {
 
-  val clientId = "672117013692-pnps2esp4nh7ejcjbb79mta6cdtb7sel.apps.googleusercontent.com"
-  //  val email = "672117013692-pnps2esp4nh7ejcjbb79mta6cdtb7sel@developer.gserviceaccount.com"
-  val secret = "0TCVA2LxmErvylnRrcNkR7qH"
+  val clientId = ""
+  val secret = ""
   var redirectUri = "http://connectv2.herokuapp.com/login/callback"
   var jsOrigin = "http://connectv2.herokuapp.com"
 
@@ -91,12 +90,6 @@ object Authentication extends Controller {
     Logger.info("get")
     val body = promise.value.get.body
     Logger.info("body: " + body)
-    //    Logger.info(body.toString())
-    //    val json: JsValue = Json.parse(tokenBody)
-    //    val access_token = json.\("access_token")
-    //    val id_token = json \ "id_token"
-    //    Logger.info("tokens: " + access_token + ", " + id_token)
-    //    return access_token.toString()
     (Json.parse(body) \ "name").as[String]
   }
 
