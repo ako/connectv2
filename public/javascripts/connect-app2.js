@@ -12,13 +12,14 @@ connectApp.
                                  , controller: MedewerkersListCtrl}).
             when('/medewerkers/:medewerkerId', {templateUrl: 'partials/medewerker-details.html'
                                           , controller: MedewerkerDetailCtrl}).
+            when('/timesheet',{templateUrl:'partials/timesheet.html',controller: TimesheetCtrl}).
+            otherwise({redirectTo: '/medewerkers'});
+}]);
+
 /*
             when('/klanten', {templateUrl: 'partials/klanten.html', controller: KlantenListCtrl}).
             when('/projecten', {templateUrl: 'partials/projecten.html', controller: ProjectenListCtrl}).
 */
-            when('/timesheet',{templateUrl:'partials/timesheet.html',controller: TimesheetCtrl}).
-            otherwise({redirectTo: '/medewerkers'});
-}]);
 
 /*******************************************************************************
  *
@@ -97,16 +98,17 @@ connectSvc.
  ******************************************************************************/
 
 console.log('init-3');
+
 function MedewerkersListCtrl($scope,Medewerker){
 		console.log('MedewerkersListCtrl');
-		// $scope.medewerkers = [
-		//     { id:'0', voornaam:'koos', achternaam:'koets'},
-		//     { id:'1', voornaam:'sjaak', achternaam:'swart'}
-		// ];
 		$scope.medewerkers = Medewerker.query();
 	};
 MedewerkersListCtrl.$inject = ['$scope','Medewerker'];
 
+        // $scope.medewerkers = [
+        //     { id:'0', voornaam:'koos', achternaam:'koets'},
+        //     { id:'1', voornaam:'sjaak', achternaam:'swart'}
+        // ];
 console.log('init-4');
 function MedewerkerDetailCtrl($scope, $routeParams,Medewerker){
 	console.log('MedewerkerDetailCtrl');
