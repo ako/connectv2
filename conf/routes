@@ -8,8 +8,8 @@ GET     /test1                      controllers.Application.test1
 GET     /test2/:name                controllers.Application.test2(name:String)
 GET     /medewerkers/all            controllers.Medewerkers.listAll
 GET     /medewerkers/:id            controllers.Medewerkers.get(id:Long)
-GET     /timesheets/                controllers.Timesheet.listAll
-GET     /timesheets/:jaar/:maand    controllers.Timesheet.get(jaar:Int,maand:Int)
+GET     /timesheets/                controllers.Timesheets.listAll
+GET     /timesheets/:jaar/:maand    controllers.Timesheets.get(jaar:Int,maand:Int)
 GET     /login/auth                 controllers.Authentication.login
 GET     /login/callback             controllers.Authentication.callback
 
