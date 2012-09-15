@@ -9,6 +9,15 @@ CREATE TABLE medewerkers (
   achternaam                VARCHAR(255) NOT NULL
 );
 
+create table timesheets (
+	medewerker_id	integer not null,
+	jaar			integer not null,
+	maand			integer not null,
+	project         varchar(255) not null,
+	uren_dag_1      integer not null,
+	uren_dag_2      integer not null
+);
+
 create table accounts (
     id                      varchar(255) not null,
     firstname               varchar(255) not null,
@@ -24,9 +33,12 @@ create table actions (
 
 insert into medewerkers(voornaam,achternaam) values ('Koos','Koets');
 insert into medewerkers(voornaam,achternaam) values ('Fred','Flintstone');
- 
+insert into timesheets(medewerker_id,jaar,maand,project,uren_dag_1,uren_dag_2) values(1,2012,8,'Herbouw connect',8,7);
+insert into timesheets(medewerker_id,jaar,maand,project,uren_dag_1,uren_dag_2) values(1,2012,8,'Mobile client',1,1);
+
 # --- !Downs
- 
+
+DROP TABLE IF EXISTS timesheets;
 DROP TABLE IF EXISTS medewerkers;
 DROP SEQUENCE medewerkers_id_seq;
 drop table if exists accounts;
