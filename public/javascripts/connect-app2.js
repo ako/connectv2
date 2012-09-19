@@ -126,7 +126,7 @@ MedewerkerDetailCtrl.$inject = ['$scope','$routeParams','Medewerker'];
 
 function TimesheetCtrl($scope,$routeParams){
     console.log("TimesheetCtrl");
-    $scope.timesheet = [
+    $scope.timesheet = {jaar:0,maand:0,allocaties:[
         {id:0,allocatie:'aloc1',omschrijving:'ontwerp',jaar:2012,maand:8,
             uren:[{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
                 {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
@@ -148,7 +148,7 @@ function TimesheetCtrl($scope,$routeParams){
                 {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
                 {uren:0},{uren:0},{uren:0}
             ]}
-    ];
+    ]};
     $scope.sum = [ {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
             {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
             {uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},{uren:0},
@@ -162,14 +162,17 @@ function TimesheetCtrl($scope,$routeParams){
     $scope.somUrenDag = function(dag){
         console.log("somUrenDag: " + dag);
         var som = 0;
-        _.each($scope.timesheet,function(aloc){
+        _.each($scope.timesheet.allocaties,function(aloc){
             console.log("aloc = " + aloc.id + ", " + aloc.uren[dag].uren);
             som = som + parseInt(aloc.uren[dag].uren);
         });
         console.log("som[" + dag + "] = " + som);
         $scope.sum[dag].uren = som;
-    }
-
+    };
+    $scope.changeDate = function(){
+        console.log("changeDate");
+        console.log("changeDate: " + $scope.timesheet.jaar + ", " + $scope.timesheet.maand);
+    };
 }
 TimesheetCtrl.$inject = ['$scope','$routeParams'];
 

@@ -1,4 +1,8 @@
-Timesheet {{timesheet[0].maand}}/{{timesheet[0].jaar}}
+Timesheet {{timesheet.allocaties[0].maand}}/{{timesheet.allocaties[0].jaar}}
+
+<input type="text" id="jaar" value="2012" data-ng-model="timesheet.jaar"/>
+<input type="text" id="maand" value="8" data-ng-model="timesheet.maand"/>
+<button ng-click="changeDate()">Wijzig</button>
 
 <table class="table timesheet">
     <thead>
@@ -6,7 +10,7 @@ Timesheet {{timesheet[0].maand}}/{{timesheet[0].jaar}}
         <th>Id</th>
         <th width="100%">Allocatie</th>
         <th width="100%">Omschrijving</th>
-        <th data-ng-repeat="dag in timesheet[0].uren">{{$index + 1}}</th>
+        <th data-ng-repeat="dag in timesheet.allocaties[0].uren">{{$index + 1}}</th>
     </tr>
     </thead>
     <tfoot>
@@ -16,7 +20,7 @@ Timesheet {{timesheet[0].maand}}/{{timesheet[0].jaar}}
         <th data-ng-repeat="dagsum in sum" class="{{dagsum.uren | hourCheck}}">{{dagsum.uren}}</th>
     </tfoot>
     <tbody>
-    <tr data-ng-repeat="allocatie in timesheet">
+    <tr data-ng-repeat="allocatie in timesheet.allocaties">
         <td>{{allocatie.id}}</td>
         <td>{{allocatie.allocatie}}</td>
         <td>{{allocatie.omschrijving}}</td>
@@ -27,4 +31,4 @@ Timesheet {{timesheet[0].maand}}/{{timesheet[0].jaar}}
     </tr>
 </table>
 <button ng-click="print()">Print</button>
-</table>
+<button ng-click="changeDate()">Wijzig</button>
